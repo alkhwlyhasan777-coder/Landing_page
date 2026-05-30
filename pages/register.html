@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title data-lang="registerTitle">Register - FinPro Accounting</title>
+        <!-- Bootstrap 5 CSS -->
+        <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+        >
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+        >
+        <!-- Google Fonts -->
+        <link 
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" 
+        rel="stylesheet"
+        >
+        <!-- Custom Stylesheets -->
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/animations.css">
+        <link rel="stylesheet" href="../assets/css/responsive.css">
+        <link rel="stylesheet" href="../assets/css/auth.css">
+    </head>
+    <body>
+        <!-- LANGUAGE TOGGLE BUTTON -->
+        <div class="lang-toggle-floating">
+            <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Toggle Language">
+                <i class="bi bi-globe2"></i>
+                <span id="langText" data-lang="langEn">EN</span>
+            </button>
+        </div>
+
+        <!-- DECORATIVE ELEMENTS -->
+        <!-- <div class="auth-decoration decoration-1"></div>
+        <div class="auth-decoration decoration-2"></div>
+        <div class="auth-decoration decoration-3"></div> -->
+        <!-- AUTH CONTAINER -->
+        <div class="auth-container">
+            <div class="auth-box">
+                <!-- Header -->
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+                    <h2 class="auth-title" data-lang="registerTitle">Create Account</h2>
+                    <p class="auth-subtitle" data-lang="registerSubtitle">Join us and manage your finances better</p>
+                </div>
+                <!-- Registration Form -->
+                <form class="auth-form" method="post" id="" novalidate>
+                    <!-- Full Name Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="fullName" data-lang="labelFullName">Full Name</label>
+                        <input type="text" class="form-control form-control-lg" id="fullName" name="fullName" placeholder="Your Full Name" data-lang-placeholder="labelFullName" required>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="email" data-lang="labelEmail">Email Address</label>
+                        <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="your@email.com" data-lang-placeholder="formEmail" required>
+                    </div>
+
+                    <!-- Phone Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="phone" data-lang="labelPhone">Phone Number</label>
+                        <input type="tel" class="form-control form-control-lg" id="phone" name="phone" placeholder="+966501234567" data-lang-placeholder="labelPhone" required>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="password" data-lang="labelPassword">Password</label>
+                        <div class="password-input">
+                            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="••••••••" data-lang-placeholder="labelPassword" required>
+                            <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Confirm Password Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="confirmPassword" data-lang="labelConfirmPassword">Confirm Password</label>
+                        <div class="password-input">
+                            <input type="password" class="form-control form-control-lg" id="confirmPassword" name="confirmPassword" placeholder="••••••••" data-lang-placeholder="labelConfirmPassword" required>
+                            <button type="button" class="password-toggle" id="confirmPasswordToggle" aria-label="Toggle password visibility">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Alert Messages -->
+                    <div id="alertContainer"></div>
+                    <!-- Submit Button -->
+                    <button 
+                    type="submit"
+                    id="registerFormbtn" 
+                    class="btn btn-gradient 
+                    btn-lg w-100 mb-3" 
+                    data-lang="btnRegister">
+                        Register
+                    </button>
+                    <!-- Login Link -->
+                    <div class="text-center">
+                        <span data-lang="haveAccount">Already have an account?</span>
+                        <a href="./login.html" data-lang="loginLink">Login here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Bootstrap Bundle -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+        <!-- Translation System -->
+        <script src="../assets/js/translations.js"></script>
+        <!-- Main App -->
+        <script src="../assets/js/app.js"></script>
+        <script src="../assets/js/register.js"></script>
+        
+        <!-- Registration Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const registerForm = document.getElementById('registerFormbtn');
+                const passwordToggle = document.getElementById('passwordToggle');
+                const confirmPasswordToggle = document.getElementById('confirmPasswordToggle');
+                const passwordInput = document.getElementById('password');
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                const alertContainer = document.getElementById('alertContainer');
+
+                // Password visibility toggle
+                passwordToggle.addEventListener('click', function() {
+                    togglePasswordVisibility(passwordInput, this);
+                });
+
+                confirmPasswordToggle.addEventListener('click', function() {
+                    togglePasswordVisibility(confirmPasswordInput, this);
+                });
+
+                // Registration form submission
+                registerForm.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const fullName = document.getElementById('fullName').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+
+                    // Validate all fields
+                    if (!fullName || !email || !phone || !password || !confirmPassword) {
+                        showAlert(langManager.translate('errorNameRequired'), 'warning');
+                        return;
+                    }
+
+                    // Validate email format
+                    if (!isValidEmail(email)) {
+                        showAlert(langManager.translate('errorEmailInvalid'), 'danger');
+                        return;
+                    }
+
+                    // Validate phone format
+                    if (!isValidPhone(phone)) {
+                        showAlert(langManager.translate('errorPhoneInvalid'), 'danger');
+                        return;
+                    }
+
+                    // Validate password length
+                    if (password.length < 8) {
+                        showAlert(langManager.translate('errorPasswordMinLength'), 'danger');
+                        return;
+                    }
+
+                    // Check password match
+                    if (password !== confirmPassword) {
+                        showAlert(langManager.translate('errorPasswordMatch'), 'danger');
+                        return;
+                    }
+
+                    // Attempt registration
+                    const result = authManager.register(fullName, email, phone, password);
+
+                    if (result.success) {
+                        showAlert(langManager.translate('successRegistration'), 'success');
+                        
+                        // Redirect to login
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 1000);
+                    } else {
+                        showAlert(result.message, 'danger');
+                    }
+                });
+
+                // Show alert function
+                function showAlert(message, type) {
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                            ${message}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `;
+                }
+
+                // Toggle password visibility
+                function togglePasswordVisibility(input, button) {
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
+                    
+                    const icon = button.querySelector('i');
+                    icon.classList.toggle('bi-eye');
+                    icon.classList.toggle('bi-eye-slash');
+                }
+
+                // Email validation
+                function isValidEmail(email) {
+                    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return regex.test(email);
+                }
+
+                // Phone validation
+                function isValidPhone(phone) {
+                    const regex = /^[0-9\s\-\+\(\)]{8,}$/;
+                    return regex.test(phone);
+                }
+
+                // Auto-translate on language change
+                document.addEventListener('languageChanged', function(e) {
+                    const lang = e.detail.language;
+                    if (lang === 'ar') {
+                        document.documentElement.dir = 'rtl';
+                    } else {
+                        document.documentElement.dir = 'ltr';
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

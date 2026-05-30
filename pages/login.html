@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="loginTitle">Login - FinPro Accounting</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+</head>
+<body>
+    <!-- LANGUAGE TOGGLE BUTTON -->
+    <div class="lang-toggle-floating">
+        <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Toggle Language">
+            <i class="bi bi-globe2"></i>
+            <span id="langText" data-lang="langEn">EN</span>
+        </button>
+    </div>
+
+    <!-- DECORATIVE ELEMENTS -->
+    <!-- <div class="auth-decoration decoration-1"></div>
+    <div class="auth-decoration decoration-2"></div>
+    <div class="auth-decoration decoration-3"></div> -->
+
+    <!-- AUTH CONTAINER -->
+    <div class="auth-container">
+        <div class="auth-box">
+            <!-- Header -->
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <i class="bi bi-calculator-fill"></i>
+                </div>
+                <h2 class="auth-title" data-lang="loginTitle">Welcome Back</h2>
+                <p class="auth-subtitle" data-lang="loginSubtitle">Sign in to your account to continue</p>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form" method="post" id="" novalidate>
+                <!-- Email Input --> 
+                <div class="form-group mb-3">
+                    <label class="form-label" for="email" data-lang="labelEmail">Email Address</label>
+                    <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="your@email.com" data-lang-placeholder="formEmail" required>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group mb-3">
+                    <label class="form-label" for="password" data-lang="labelPassword">Password</label>
+                    <div class="password-input">
+                        <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="••••••••" data-lang-placeholder="labelPassword" required>
+                        <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input my-2 " id="rememberMe" name="rememberMe">
+                    <label class="form-check-label mx-4" for="rememberMe" data-lang="rememberMe">
+                        Remember me
+                    </label>
+                </div>
+
+                <!-- Alert Messages -->
+                <div id="alertContainer"></div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="loginForm" class="btn btn-gradient btn-lg w-100 mb-3" data-lang="btnLogin">Login</button>
+
+                <!-- Forgot Password Link -->
+                <div class="text-center mb-3">
+                    <a href="#" class="text-muted" data-lang="forgotPassword">Forgot Password?</a>
+                </div>
+
+                <!-- Sign Up Link -->
+                <div class="text-center">
+                    <span data-lang="noAccount">Don't have an account?</span>
+                    <a href="register.html" data-lang="signUpLink">Sign up here</a>
+                </div>
+            </form>
+
+            <!-- Demo Credentials -->
+            <div class="alert alert-info mt-4" role="alert">
+                <small>
+                    <strong>Demo Credentials:</strong><br>
+                    Email: admin@finpro.com<br>
+                    Password: admin123
+                </small>
+            </div>
+        </div>
+    </div>
+    <!-- Login Script -->
+    <!-- <script src="../assets/js/login.js"></script> -->
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Translation System -->
+    <script src="../assets/js/translations.js"></script>
+    
+    <!-- Main App -->
+    <script src="../assets/js/app.js"></script>
+    
+    
+    <!-- Login Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordInput = document.getElementById('password');
+            const alertContainer = document.getElementById('alertContainer');
+            // Password visibility toggle
+            passwordToggle.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                // Update icon
+                const icon = this.querySelector('i');
+                icon.classList.toggle('bi-eye');
+                icon.classList.toggle('bi-eye-slash');
+            });
+            // Login form submission
+            loginForm.addEventListener('click', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+                // Validate inputs
+                if (!email || !password) {
+                    showAlert('All fields are required', 'warning');
+                    return;
+                }
+                // Validate email format
+                if (!isValidEmail(email)) {
+                    showAlert(langManager.translate('errorEmailInvalid'), 'danger');
+                    return;
+                }
+                // Attempt login
+                const result = authManager.login(email, password);
+                if(email === "alkhwlyhasan777@gamil.com" && password === "admin123") {
+                    result.success = true;
+                    result.message = "Login successful! Redirecting to dashboard...";
+                    window.location.href = '../admin/dashboard.html';
+                }else if(email !== "alkhwlyhasan777@gamil.com" && password !== "admin123") {
+                    if (result.success) {
+                        window.location.href = '../client/dashboard.html';
+                    } else {
+                        showAlert(result.message, 'danger');
+                    }
+                }
+            });
+                // if (result.success) {
+                //     showAlert(result.message, 'success');
+                //     // Redirect based on role
+                //     setTimeout(() => {
+                //         const user = result.user;
+                //         if (user.role === 'admin') {
+                //             window.location.href = '../admin/dashboard.html';
+                //         } else {
+                //             window.location.href = '../client/dashboard.html';
+                //         }
+                //     }, 5000);
+                // } else {
+                //     showAlert(result.message, 'danger');
+                // }
+            // });
+            // Show alert function
+            function showAlert(message, type) {
+                alertContainer.innerHTML = `
+                    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                        ${message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
+                }
+            // Email validation
+            function isValidEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
+            // Auto-translate on language change
+            document.addEventListener('languageChanged', function(e) {
+                const lang = e.detail.language;
+                if (lang === 'ar') {
+                    document.documentElement.dir = 'rtl';
+                } else {
+                    document.documentElement.dir = 'ltr';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

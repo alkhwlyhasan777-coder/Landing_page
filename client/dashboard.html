@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="clientDashboard">My Dashboard - FinPro Accounting</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <style>
+        body{
+            background: repeating-linear-gradient(0deg, transparent 0px, transparent 23px, color-mix(in oklch, var(--eg-gold-deep-antique) 22%, transparent) 23px, color-mix(in oklch, var(--eg-gold-deep-antique) 22%, transparent) 24px), repeating-linear-gradient(90deg, transparent 0px, transparent 39px, color-mix(in oklch, var(--eg-gold-deep-antique) 18%, transparent) 39px, color-mix(in oklch, var(--eg-gold-deep-antique) 18%, transparent) 40px), radial-gradient(ellipse 50% 40% at 18% 0%, color-mix(in oklch, var(--eg-gold-antique) 28%, transparent) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 82% 0%, color-mix(in oklch, var(--eg-gold-antique) 28%, transparent) 0%, transparent 65%), radial-gradient(ellipse 70% 60% at 50% 0%, color-mix(in oklch, var(--eg-gold-antique) 18%, transparent) 0%, transparent 75%), radial-gradient(ellipse 60% 50% at 50% 100%, color-mix(in oklch, var(--eg-crimson-deep) 18%, transparent) 0%, transparent 75%), linear-gradient(180deg, var(--eg-wood-dark) 0%, var(--eg-wood-grain) 50%, var(--eg-wood-dark) 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- LANGUAGE TOGGLE -->
+    <div class="lang-toggle-floating">
+        <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Toggle Language">
+            <i class="bi bi-globe2"></i>
+            <span id="langText" data-lang="langEn">EN</span>
+        </button>
+    </div>
+    <div class="d-flex">
+        <!-- SIDEBAR -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="bi bi-calculator-fill"></i>
+                </div>
+                <h5 data-lang="brandName">FinPro</h5>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item active">
+                    <a href="#" class="menu-link">
+                        <i class="bi bi-speedometer2"></i>
+                        <span data-lang="clientDashboard">My Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#profile-section" class="menu-link">
+                        <i class="bi bi-person"></i>
+                        <span data-lang="myProfile">My Profile</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#subscription-section" class="menu-link">
+                        <i class="bi bi-credit-card"></i>
+                        <span data-lang="subscription">Subscription</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#files-section" class="menu-link">
+                        <i class="bi bi-file-earmark"></i>
+                        <span data-lang="uploadedFiles">Uploaded Files</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="bi bi-bell"></i>
+                        <span data-lang="notifications">Notifications</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button class="btn btn-logout w-100" id="logoutBtn" data-lang="logout">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span data-lang="logout">Logout</span>
+                </button>
+            </div>
+            <div class="sidebar-footer">
+                <button class="btn btn-logout w-100"  data-lang="logout">
+                    <a href="../index.html" target="_blank">
+                        <i class="bi bi-house"></i>
+                        <span data-lang="logout">Home</span>
+                    </a>
+                </button>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TOP NAVBAR -->
+            <nav class="top-navbar">
+                <div class="navbar-left">
+                    <button class="btn-toggle-sidebar" id="toggleSidebar" title="btn">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <span class="breadcrumb" data-lang="clientDashboard">My Dashboard</span>
+                </div>
+                
+                <div class="navbar-right">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <p class="user-name" id="userName">Client User</p>
+                            <small class="user-role" data-lang="statusActive">Active</small>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+                <!-- Welcome Section -->
+                <div class="card card-dashboard mb-4">
+                    <div class="card-body">
+                        <h4 class="mb-2" data-lang="welcomeMessage">Welcome back</h4>
+                        <p class="text-muted mb-0" id="welcomeText">Manage your accounting and financial information</p>
+                    </div>
+                </div>
+
+                <!-- Dashboard Stats -->
+                <div class="row mb-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-success">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statProjects">Active Projects</p>
+                                <h3 class="stat-value" id="activeProjects">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-primary">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statClients">Total Clients</p>
+                                <h3 class="stat-value" id="totalClients">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-warning">
+                                <i class="bi bi-exclamation-circle"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statusPending">Pending Tasks</p>
+                                <h3 class="stat-value" id="pendingTasks">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-info">
+                                <i class="bi bi-file-earmark"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statSatisfaction">Revenue</p>
+                                <h3 class="stat-value">$12.5K</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Section -->
+                <div id="profile-section" class="card card-dashboard mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0" data-lang="myProfile">My Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" data-lang="labelFullName">Full Name</label>
+                                <input type="text" class="form-control" id="profileName" disabled title="input">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" data-lang="labelEmail">Email</label>
+                                <input type="email" class="form-control" id="profileEmail" disabled title="input">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" data-lang="labelPhone">Phone</label>
+                                <input type="tel" class="form-control" id="profilePhone" disabled title="input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subscription Section -->
+                <div id="subscription-section" class="card card-dashboard mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0" data-lang="subscription">Subscription</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong data-lang="statusActive">Status:</strong> <span class="badge bg-success">Active</span></p>
+                                <p><strong>Plan:</strong> Professional</p>
+                                <p><strong>Renewal Date:</strong> 2026-06-10</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" style="width: 75%"></div>
+                                </div>
+                                <small class="text-muted">30 days remaining</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Files Section -->
+                <div id="files-section" class="card card-dashboard">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" data-lang="uploadedFiles">Uploaded Files</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                            <i class="bi bi-cloud-arrow-up"></i> Upload
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th data-lang="tableName">File Name</th>
+                                        <th data-lang="tableDate">Date Uploaded</th>
+                                        <th data-lang="tableStatus">Status</th>
+                                        <th data-lang="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="filesTable">
+                                    <tr>
+                                        <td>Q1_Financial_Report.pdf</td>
+                                        <td>2026-05-01</td>
+                                        <td><span class="badge bg-success" data-lang="statusCompleted">Completed</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="btn">
+                                                <i class="bi bi-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax_Documents_2025.xlsx</td>
+                                        <td>2026-04-28</td>
+                                        <td><span class="badge bg-warning" data-lang="statusPending">Pending</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="btn">
+                                                <i class="bi bi-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- UPLOAD MODAL -->
+    <div class="modal fade" id="uploadModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" data-lang="uploadedFiles">Upload File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" title="btn"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label" data-lang="labelEmail">Select File</label>
+                        <input title="input" type="file" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-lang="cancel">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-lang="save">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Translation System -->
+    <script src="../assets/js/translations.js"></script>
+    
+    <!-- Main App -->
+    <script src="../assets/js/app.js"></script>
+    
+    <!-- Client Dashboard Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            if (!authManager.isLoggedIn()) {
+                window.location.href = '../pages/login.html';
+                return;
+            }
+
+            const user = authManager.getCurrentUser();
+            document.getElementById('userName').textContent = user.fullName;
+            document.getElementById('profileName').value = user.fullName;
+            document.getElementById('profileEmail').value = user.email;
+            document.getElementById('profilePhone').value = user.phone;
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                authManager.logout();
+            });
+
+            // Sidebar toggle
+            document.getElementById('toggleSidebar').addEventListener('click', () => {
+                document.querySelector('.sidebar').classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>

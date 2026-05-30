@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="adminTitle">Admin Dashboard - FinPro Accounting</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <style>
+        body{
+            font-family: Arial;
+            background:#f5f7fa;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+    
+        .profile-card{
+            background:#fff;
+            padding:30px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+            width:300px;
+        }
+    
+        .profile-image{
+            width:140px;
+            height:140px;
+            border-radius:50%;
+            object-fit:cover;
+            border:4px solid #0d6efd;
+            margin-bottom:20px;
+        }
+    
+        .upload-btn{
+            display:inline-block;
+            padding:10px 20px;
+            background:#0d6efd;
+            color:white;
+            border-radius:10px;
+            cursor:pointer;
+            transition:.3s;
+        }
+    
+        .upload-btn:hover{
+            background:#0b5ed7;
+        }
+    
+        input[type="file"]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <!-- LANGUAGE TOGGLE -->
+    <div class="lang-toggle-floating">
+        <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Toggle Language">
+            <i class="bi bi-globe2"></i>
+            <span id="langText" data-lang="langEn">EN</span>
+        </button>
+    </div>
+
+    <div class="d-flex">
+        <!-- SIDEBAR -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="bi bi-calculator-fill"></i>
+                </div>
+                <h5 data-lang="brandName">FinPro</h5>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item active">
+                    <a href="#" class="menu-link">
+                        <i class="bi bi-speedometer2"></i>
+                        <span data-lang="overview">Overview</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#clients-section" class="menu-link">
+                        <i class="bi bi-people"></i>
+                        <span data-lang="manageClients">Manage Clients</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="bi bi-bar-chart"></i>
+                        <span data-lang="analytics">Analytics</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="bi bi-file-earmark"></i>
+                        <span data-lang="reports">Reports</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button class="btn btn-logout w-100" id="logoutBtn" data-lang="logout">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span data-lang="logout">Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TOP NAVBAR -->
+            <nav class="top-navbar">
+                <div class="navbar-left">
+                    <button class="btn-toggle-sidebar" id="toggleSidebar" title="btn">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <span class="breadcrumb" data-lang="adminTitle">Admin Dashboard</span>
+                </div>
+                
+                <div class="navbar-right">
+                    <div class="profile-card">
+                        <img 
+                        title="image"
+                        src="https://via.placeholder.com/140" 
+                        class="profile-image"
+                        id="profilePreview"
+                        >
+                        <br>
+                        <label for="uploadInput" class="upload-btn">
+                        رفع صورة
+                        </label>
+                        <input type="file" id="uploadInput" accept="image/*">
+                    </div>
+                </div>
+            </nav>
+
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+                <!-- Overview Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-success">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statProjects">Active Projects</p>
+                                <h3 class="stat-value" id="activeProjects">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-primary">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statClients">Total Clients</p>
+                                <h3 class="stat-value" id="totalClients">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-warning">
+                                <i class="bi bi-exclamation-circle"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statusPending">Pending Tasks</p>
+                                <h3 class="stat-value" id="pendingTasks">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-info">
+                                <i class="bi bi-file-earmark"></i>
+                            </div>
+                            <div class="stat-body">
+                                <p class="stat-label" data-lang="statSatisfaction">Revenue</p>
+                                <h3 class="stat-value">$12.5K</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clients Management Section -->
+                <div id="clients-section" class="card card-dashboard">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-0" data-lang="manageClients">Manage Clients</h5>
+                        </div>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addClientModal" data-lang="addClient">
+                            <i class="bi bi-plus"></i> Add Client
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Search Bar -->
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search clients..." data-lang-placeholder="formName">
+                        </div>
+
+                        <!-- Clients Table -->
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th data-lang="tableNo">#</th>
+                                        <th data-lang="tableName">Name</th>
+                                        <th data-lang="tableEmail">Email</th>
+                                        <th data-lang="tablePhone">Phone</th>
+                                        <th data-lang="tableStatus">Status</th>
+                                        <th data-lang="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clientsTable">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ADD CLIENT MODAL -->
+    <div class="modal fade" id="addClientModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" data-lang="addClient">Add New Client</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" title="btn"></button>
+                </div>
+                <form id="addClientForm" novalidate>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label" data-lang="labelFullName">Client Name</label>
+                            <input type="text" class="form-control" id="clientName" required title="input">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" data-lang="labelEmail">Email</label>
+                            <input type="email" class="form-control" id="clientEmail" required title="input">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" data-lang="labelPhone">Phone</label>
+                            <input type="tel" class="form-control" id="clientPhone" required title="input">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" data-lang="clientCompany">Company</label>
+                            <input type="text" class="form-control" id="clientCompany" title="input">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-lang="cancel">Cancel</button>
+                        <button type="submit" class="btn btn-primary" data-lang="save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Translation System -->
+    <script src="../assets/js/translations.js"></script>
+    
+    <!-- Main App -->
+    <script src="../assets/js/app.js"></script>
+    
+    <!-- Dashboard Script -->
+    <script>
+        const uploadInput = document.getElementById("uploadInput");
+        const profilePreview = document.getElementById("profilePreview");
+    
+        uploadInput.addEventListener("change", function () {
+    
+            const file = this.files[0];
+    
+            if(file){
+    
+            const reader = new FileReader();
+    
+            reader.onload = function(e){
+                profilePreview.src = e.target.result;
+            }
+    
+            reader.readAsDataURL(file);
+            }
+        });
+    </script>
+    <script>
+        class AdminDashboard {
+            constructor() {
+                this.clients = [];
+                this.checkAuth();
+                this.init();
+            }
+
+            checkAuth() {
+                if (!authManager.isLoggedIn()) {
+                    window.location.href = '../pages/login.html';
+                    return;
+                }
+
+                const user = authManager.getCurrentUser();
+                if (user.role !== 'admin') {
+                    window.location.href = '../client/dashboard.html';
+                }
+            }
+
+            init() {
+                this.loadClients();
+                this.setupEventListeners();
+                this.updateStats();
+                this.displayClients();
+                this.updateUserInfo();
+            }
+
+            loadClients() {
+                // Get all users except admin
+                const allUsers = authManager.users;
+                this.clients = allUsers.filter(u => u.role !== 'admin').map(u => ({
+                    id: u.id,
+                    name: u.fullName,
+                    email: u.email,
+                    phone: u.phone,
+                    status: 'Active'
+                }));
+            }
+
+            updateStats() {
+                document.getElementById('totalClients').textContent = this.clients.length;
+                document.getElementById('activeProjects').textContent = Math.floor(this.clients.length * 0.8);
+                document.getElementById('pendingTasks').textContent = Math.floor(this.clients.length * 0.3);
+            }
+
+            displayClients() {
+                const tbody = document.getElementById('clientsTable');
+                tbody.innerHTML = '';
+
+                if (this.clients.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="text-center" data-lang="noData">No clients found</td></tr>`;
+                    return;
+                }
+
+                this.clients.forEach((client, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${client.name}</td>
+                        <td>${client.email}</td>
+                        <td>${client.phone}</td>
+                        <td><span class="badge bg-success">${client.status}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary me-2" onclick="dashboard.editClient(${client.id})">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="dashboard.deleteClient(${client.id})">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            setupEventListeners() {
+                // Add client form
+                document.getElementById('addClientForm').addEventListener('submit', (e) => this.handleAddClient(e));
+
+                // Search input
+                document.getElementById('searchInput').addEventListener('input', (e) => this.searchClients(e.target.value));
+
+                // Logout
+                document.getElementById('logoutBtn').addEventListener('click', () => {
+                    authManager.logout();
+                });
+
+                // Sidebar toggle
+                document.getElementById('toggleSidebar').addEventListener('click', () => {
+                    document.querySelector('.sidebar').classList.toggle('collapsed');
+                });
+            }
+
+            handleAddClient(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('clientName').value;
+                const email = document.getElementById('clientEmail').value;
+                const phone = document.getElementById('clientPhone').value;
+
+                if (!name || !email || !phone) {
+                    alert('Please fill all fields');
+                    return;
+                }
+
+                // Add to local clients array
+                this.clients.push({
+                    id: Date.now(),
+                    name,
+                    email,
+                    phone,
+                    status: 'Active'
+                });
+
+                // Reset form
+                document.getElementById('addClientForm').reset();
+
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addClientModal'));
+                modal.hide();
+
+                // Update display
+                this.displayClients();
+                this.updateStats();
+            }
+
+            searchClients(query) {
+                const filtered = this.clients.filter(client =>
+                    client.name.toLowerCase().includes(query.toLowerCase()) ||
+                    client.email.toLowerCase().includes(query.toLowerCase()) ||
+                    client.phone.includes(query)
+                );
+
+                const tbody = document.getElementById('clientsTable');
+                tbody.innerHTML = '';
+
+                if (filtered.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="text-center" data-lang="noData">No clients found</td></tr>`;
+                    return;
+                }
+
+                filtered.forEach((client, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${client.name}</td>
+                        <td>${client.email}</td>
+                        <td>${client.phone}</td>
+                        <td><span class="badge bg-success">${client.status}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary me-2" onclick="dashboard.editClient(${client.id})">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="dashboard.deleteClient(${client.id})">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            editClient(id) {
+                alert('Edit functionality coming soon');
+            }
+
+            deleteClient(id) {
+                if (confirm(langManager.translate('confirmDelete'))) {
+                    this.clients = this.clients.filter(c => c.id !== id);
+                    this.displayClients();
+                    this.updateStats();
+                }
+            }
+
+            updateUserInfo() {
+                const user = authManager.getCurrentUser();
+                document.getElementById('userName').textContent = user.fullName;
+            }
+        }
+
+        // Initialize dashboard
+        let dashboard;
+        document.addEventListener('DOMContentLoaded', function() {
+            dashboard = new AdminDashboard();
+        });
+    </script>
+</body>
+</html>

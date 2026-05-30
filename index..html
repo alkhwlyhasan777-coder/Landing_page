@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title data-lang="pageTitle">Professional Accounting & Financial Services</title>
+        <meta name="description" content="Premium accounting and financial services for businesses">
+        <!-- Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+        
+        <!-- Custom Stylesheets -->
+        <!-- <link rel="stylesheet" href="./assets/css/auth.css"> -->
+        <link rel="stylesheet" href="./assets/css/main.css">
+        <link rel="stylesheet" href="./assets/css/animations.css">
+        <link rel="stylesheet" href="./assets/css/responsive.css">
+    </head>
+    <body>
+        <style>
+                /* ================================  LANGUAGE TOGGLE - FLOATING   ================================ */
+                .lang-toggle-floating {
+                    position: fixed;
+                    top:100px;
+                    right: 20px;
+                    z-index: 10000000000000000000000000;
+                }
+                .lang-toggle-btn {
+                    background: rgba(255, 255, 255, 0.15);
+                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    color: var(--text-dark);
+                    border-radius: 50px;
+                    padding: 0.6rem 1.2rem;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    cursor: pointer;
+                    transition: all 250ms ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    /* backdrop-filter: blur(10px); */
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+                }
+                .lang-toggle-btn:hover {
+                    background: rgba(255, 255, 255, 0.25);
+                    border-color: rgba(255, 255, 255, 0.5);
+                    transform: scale(1.05);
+                }
+                .lang-toggle-btn:active {
+                    transform: scale(0.98);
+                }
+                .lang-toggle-btn i {
+                    font-size: 1rem;
+                    transition: transform 250ms ease;
+                }
+                .lang-toggle-btn:hover i {
+                    transform: rotate(180deg);
+                }
+                [dir="rtl"] .lang-toggle-floating {
+                    right: auto;
+                    left: 20px;
+                }
+                @media (max-width:768px) {
+                    .lang-toggle-floating {
+                    position: fixed;
+                    top:60px;
+                    right:5px;
+                    z-index: 100;
+                }
+                }
+        </style>
+        <!-- LANGUAGE TOGGLE BUTTON (Floating) -->
+        <div class="lang-toggle-floating">
+            <button class="lang-toggle-btn" id="langToggleBtn" aria-label="Toggle Language">
+                <i class="bi bi-globe2"></i>
+                <span id="langText" data-lang="langEn">EN</span>
+            </button>
+        </div>
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-premium sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" data-lang="navBrand">
+                    <i class="bi bi-calculator-fill"></i>
+                    <span data-lang="brandName">FinPro Accounting</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home" data-lang="navHome">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services" data-lang="navServices">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" data-lang="navAbout">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#testimonials" data-lang="navTestimonials">Testimonials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" data-lang="navContact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex gap-2 ms-3">
+                        <a href="pages/login.html" class="btn btn-outline-primary btn-sm" data-lang="btnLogin">Login</a>
+                        <a href="pages/register.html" class="btn btn-primary btn-sm" data-lang="btnSignUp">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- HERO SECTION -->
+        <section id="home" class="hero-section py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="hero-content">
+                            <h1 class="hero-title" data-lang="heroTitle">
+                                Professional Accounting Solutions
+                            </h1>
+                            <p class="hero-subtitle" data-lang="heroSubtitle">
+                                Manage your finances with precision and confidence. Our expert accountants provide comprehensive financial services for your business growth.
+                            </p>
+                            <div class="hero-cta">
+                                <a href="pages/register.html" class="btn btn-primary btn-lg" data-lang="ctaGetStarted">Get Started</a>
+                                <button class="btn btn-outline-primary btn-lg" data-lang="ctaLearnMore">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-cards">
+                            <div class="floating-card card-1">
+                                <i class="bi bi-graph-up"></i>
+                                <p data-lang="cardAnalysis">Financial Analysis</p>
+                            </div>
+                            <div class="floating-card card-2">
+                                <i class="bi bi-file-earmark-check"></i>
+                                <p data-lang="cardCompliance">Tax Compliance</p>
+                            </div>
+                            <div class="floating-card card-3">
+                                <i class="bi bi-shield-check"></i>
+                                <p data-lang="cardAudit">Professional Audit</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SERVICES SECTION -->
+        <section id="services" class="services-section py-5">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-lang="servicesTitle">Our Services</h2>
+                    <p class="section-subtitle" data-lang="servicesSubtitle">Comprehensive financial solutions tailored to your business needs</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-receipt"></i>
+                            </div>
+                            <h3 class="service-name" data-lang="serviceTax">Tax Services</h3>
+                            <p class="service-desc" data-lang="serviceTaxDesc">Expert tax planning and compliance services to minimize your tax burden.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-calculator"></i>
+                            </div>
+                            <h3 class="service-name" data-lang="serviceBookkeeping">Bookkeeping</h3>
+                            <p class="service-desc" data-lang="serviceBookkeepingDesc">Accurate and organized financial record maintenance for your business.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-bar-chart"></i>
+                            </div>
+                            <h3 class="service-name" data-lang="serviceAnalysis">Financial Analysis</h3>
+                            <p class="service-desc" data-lang="serviceAnalysisDesc">Detailed financial reporting and analysis for informed decision making.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-file-earmark-check"></i>
+                            </div>
+                            <h3 class="service-name" data-lang="serviceAuditing">Auditing</h3>
+                            <p class="service-desc" data-lang="serviceAuditingDesc">Professional audit services to ensure financial integrity and compliance.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <h3 class="service-name" data-lang="servicePayroll">Payroll Services</h3>
+                            <p class="service-desc" data-lang="servicePayrollDesc">Comprehensive payroll management and employee compensation solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="bi bi-lightbulb"></i>
+                            </div>
+                            <h3 class="service-name" data-lang="serviceConsulting">Financial Consulting</h3>
+                            <p class="service-desc" data-lang="serviceConsultingDesc">Strategic financial advice to optimize your business operations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="about-content">
+                            <h2 class="section-title" data-lang="aboutTitle">Why Choose Us?</h2>
+                            <p class="about-text" data-lang="aboutText1">With over 15 years of experience in accounting and financial management, we've helped hundreds of businesses achieve their financial goals.</p>
+                            <p class="about-text" data-lang="aboutText2">Our team of certified professionals is dedicated to providing exceptional service and strategic financial guidance.</p>
+                            
+                            <div class="about-features">
+                                <div class="feature-item">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span data-lang="featureProfessional">Professional & Certified</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span data-lang="feature24Support">24/7 Support</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span data-lang="featureTransparent">Transparent Pricing</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span data-lang="featureSecure">Secure & Confidential</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="statistics-grid">
+                            <div class="stat-card">
+                                <h3 class="stat-number counter" data-target="500">0</h3>
+                                <p class="stat-label" data-lang="statClients">Happy Clients</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 class="stat-number counter" data-target="15">0</h3>
+                                <p class="stat-label" data-lang="statYears">Years of Experience</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 class="stat-number counter" data-target="1200">0</h3>
+                                <p class="stat-label" data-lang="statProjects">Projects Completed</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 class="stat-number">98%</h3>
+                                <p class="stat-label" data-lang="statSatisfaction">Client Satisfaction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- TESTIMONIALS SECTION -->
+        <section id="testimonials" class="testimonials-section py-5">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-lang="testimonialsTitle">What Our Clients Say</h2>
+                    <p class="section-subtitle" data-lang="testimonialsSubtitle">Real feedback from satisfied customers</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="testimonial-text" data-lang="testimonial1">Professional and reliable accounting services that exceeded our expectations. Highly recommended!</p>
+                            <div class="testimonial-author">
+                                <h4 data-lang="testimonialAuthor1">Ahmed Mohammed</h4>
+                                <p data-lang="testimonialRole1">CEO, Tech Solutions Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="testimonial-text" data-lang="testimonial2">Exceptional service and support. They helped us save significant amount on taxes and streamline our financial processes.</p>
+                            <div class="testimonial-author">
+                                <h4 data-lang="testimonialAuthor2">Fatima Hassan</h4>
+                                <p data-lang="testimonialRole2">Founder, Digital Marketing Agency</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="testimonial-text" data-lang="testimonial3">Great team, detailed reporting, and transparent communication. Our go-to accounting partner!</p>
+                            <div class="testimonial-author">
+                                <h4 data-lang="testimonialAuthor3">Mohammed Abdullah</h4>
+                                <p data-lang="testimonialRole3">Business Owner, Retail Company</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="contact-section py-5">
+            <div class="container">
+
+                <div class="section-header">
+                    <h2 class="section-title" data-lang="contactTitle">Get In Touch</h2>
+                    <p class="section-subtitle" data-lang="contactSubtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <h3 data-lang="contactPhone">Phone</h3>
+                            <p>+966 50 1234 567</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <h3 data-lang="contactEmail">Email</h3>
+                            <p>info@finpro.accounting</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <h3 data-lang="contactLocation">Location</h3>
+                            <p data-lang="contactLocationText">Riyadh, Saudi Arabia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-lg-8 mx-auto">
+                        <form class="contact-form" id="contactForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" data-lang-placeholder="formName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" data-lang-placeholder="formEmail" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Subject" data-lang-placeholder="formSubject" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Your Message" data-lang-placeholder="formMessage" required></textarea>
+                            </div>
+                            <a 
+                            href="https://wa.me/201127846533"  
+                            rel="noopener" 
+                            class="btn btn-primary 
+                            btn-lg w-100" 
+                            data-lang="formSubmit">
+                                Send Message
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FOOTER -->
+        <footer class="footer py-5">
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-4">
+                        <h5 data-lang="footerAbout">About Us</h5>
+                        <p data-lang="footerAboutText">Leading accounting and financial services provider dedicated to your business success.</p>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <h5 data-lang="footerServices">Services</h5>
+                        <ul class="footer-links">
+                            <li><a href="#" data-lang="footerTax">Tax Services</a></li>
+                            <li><a href="#" data-lang="footerBookkeeping">Bookkeeping</a></li>
+                            <li><a href="#" data-lang="footerAudit">Audit</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <h5 data-lang="footerCompany">Company</h5>
+                        <ul class="footer-links">
+                            <li><a href="#" data-lang="footerHome">Home</a></li>
+                            <li><a href="#" data-lang="footerAbout">About</a></li>
+                            <li><a href="#" data-lang="footerContact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <h5 data-lang="footerFollow">Follow Us</h5>
+                        <div class="social-links">
+                            <a href="https://facebook.com" title="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://twitter.com" title="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="https://linkedin.com" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://instagram.com" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="footer-bottom">
+                    <p data-lang="footerCopyright">&copy; 2026 FinPro Accounting. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Translation System -->
+        <script src="./assets/js/translations.js"></script>
+        <!-- Main App -->
+        <script src="./assets/js/app.js"></script>
+    </body>
+</html>
